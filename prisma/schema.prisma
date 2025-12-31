@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ===== ENTITIES & PRINCIPALS =====
+
+model Entity {
+  id          String       @id @default(cuid())
+  name        String
+  type        EntityType
+  state       String
+  address     String?
+  status      String       @default("ACTIVE")
+  principals  Principal[]
+  milestones  Milestone[]
+  documents   Document[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Principal {
+  id        String  @id @default(cuid())
+  name      String
+  role      String
+  state     String
+  email     String?
+  phone     String?
+  address   String?
+  entityId  String
+  entity    Entity  @relation(fields: [entityId], references: [id], onDelete: Cascade)
+}
+
+// ===== CASE & JUDGMENT =====
+
+model Case {
+  id               String   @id @default(cuid())
+  caseNumber       String   @unique
+  court            String
+  plaintiffName    String
+  plaintiffContact String?
+  judgmentAmount   Decimal
+  judgmentDate     DateTime
+  attorneyName     String?
+  attorneyEmail    String?
+  status           CaseStatus @default(ACTIVE)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+// ===== DOMESTICATION MILESTONES =====
+
+model Milestone {
+  id          String        @id @default(cuid())
+  entityId    String
+  entity      Entity        @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  targetState String
+  step        MilestoneStep
+  completed   Boolean       @default(false)
+  completedAt DateTime?
+  notes       String?
+  createdAt   DateTime      @default(now())
+}
+
+// ===== DOCUMENTS =====
+
+model Document {
+  id          String   @id @default(cuid())
+  entityId    String
+  entity      Entity   @relation(fields: [entityId], references: [id], onDelete: Cascade)
+  filename    String
+  filePath    String
+  category    DocumentCategory
+  uploadedAt  DateTime @default(now())
+}
+
+// ===== USERS & ACCESS CONTROL =====
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(VIEWER)
+  createdAt DateTime @default(now())
+}
+
+// ===== RECON REPORTS =====
+
+model ReconReport {
+  id          String   @id @default(cuid())
+  targetName  String
+  results     String   // JSON string of search results
+  sentAt      DateTime @default(now())
+}
+
+// ===== ENUMS =====
+
+enum EntityType {
+  COMPANY
+  PRINCIPAL
+}
+
+enum CaseStatus {
+  ACTIVE
+  DOMESTICATED
+  COLLECTING
+  SETTLED
+  CLOSED
+}
+
+enum MilestoneStep {
+  FL_EXEMPLIFIED_SCRIPT
+  FILED_IN_TARGET_STATE
+  SERVED_NOTICE_TO_DEBTORS
+  WRIT_ISSUED
+}
+
+enum DocumentCategory {
+  DISCOVERY
+  COMMUNICATION
+  COURT_FILING
+  CORRESPONDENCE
+  OTHER
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  VIEWER
+}
