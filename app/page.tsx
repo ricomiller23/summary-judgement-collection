@@ -9,6 +9,13 @@ import { Sidebar } from "@/components/Sidebar";
 import { MetricCard } from "@/components/MetricCard";
 import { AlertPanel } from "@/components/AlertPanel";
 
+// Page Components
+import { AILegalMemosPage } from "@/components/AILegalMemosPage";
+import { DocumentStationPage } from "@/components/DocumentStationPage";
+import { SearchPage } from "@/components/SearchPage";
+import { IntelPage } from "@/components/IntelPage";
+import { ReportsPage } from "@/components/ReportsPage";
+
 // UI Components
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -277,18 +284,20 @@ export default function Dashboard() {
             </>
           )}
 
-          {/* Other nav items placeholder */}
-          {activeNav !== "dashboard" && (
-            <div className="flex items-center justify-center h-[60vh]">
-              <div className="text-center">
-                <Gavel className="w-16 h-16 text-[#2d3139] mx-auto mb-4" />
-                <h2 className="text-xl font-semibold text-white mb-2">
-                  {activeNav.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
-                </h2>
-                <p className="text-[#6b7280]">This section is coming soon.</p>
-              </div>
-            </div>
-          )}
+          {/* AI Legal Memos */}
+          {activeNav === "ai-memos" && <AILegalMemosPage />}
+
+          {/* Document Station */}
+          {activeNav === "documents" && <DocumentStationPage />}
+
+          {/* Search */}
+          {activeNav === "search" && <SearchPage />}
+
+          {/* Intel */}
+          {activeNav === "intel" && <IntelPage />}
+
+          {/* Reports */}
+          {activeNav === "reports" && <ReportsPage />}
         </div>
       </main>
 
