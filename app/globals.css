@@ -1,12 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* ======================== NEW DESIGN SYSTEM ======================== */
+:root {
+  /* Backgrounds */
+  --bg-primary: #1a1d23;
+  --bg-secondary: #22262d;
+  --bg-tertiary: #2a2f38;
+  --bg-card: #1e2228;
+
+  /* Accent Colors */
+  --accent-primary: #00bcd4;
+  --accent-secondary: #26c6da;
+  --accent-glow: rgba(0, 188, 212, 0.2);
+
+  /* Status Colors */
+  --status-urgent: #f44336;
+  --status-warning: #ff9800;
+  --status-success: #4caf50;
+  --status-info: #2196f3;
+
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+
+  /* Borders */
+  --border-default: #2d3139;
+  --border-accent: #00bcd4;
+
+  /* Shadows */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-elevated: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+
+  /* Radii */
+  --radius: 0.75rem;
+
+  /* shadcn/ui compatible vars */
+  --background: #1a1d23;
+  --foreground: #ffffff;
+  --card: #22262d;
+  --card-foreground: #ffffff;
+  --popover: #22262d;
+  --popover-foreground: #ffffff;
+  --primary: #00bcd4;
+  --primary-foreground: #ffffff;
+  --secondary: #2a2f38;
+  --secondary-foreground: #ffffff;
+  --muted: #2a2f38;
+  --muted-foreground: #9ca3af;
+  --accent: #00bcd4;
+  --accent-foreground: #ffffff;
+  --destructive: #f44336;
+  --border: #2d3139;
+  --input: #2d3139;
+  --ring: #00bcd4;
+  --chart-1: #00bcd4;
+  --chart-2: #4caf50;
+  --chart-3: #ff9800;
+  --chart-4: #f44336;
+  --chart-5: #2196f3;
+  --sidebar: #22262d;
+  --sidebar-foreground: #9ca3af;
+  --sidebar-primary: #00bcd4;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: rgba(0, 188, 212, 0.1);
+  --sidebar-accent-foreground: #00bcd4;
+  --sidebar-border: #2d3139;
+  --sidebar-ring: #00bcd4;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -46,80 +116,191 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
   }
+}
+
+/* ======================== UTILITY CLASSES ======================== */
+
+/* Sidebar styles */
+.sidebar {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-default);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.sidebar-item.active {
+  background: var(--accent-glow);
+  color: var(--accent-primary);
+  border-left: 3px solid var(--accent-primary);
+  margin-left: -3px;
+}
+
+/* Metric card styles */
+.metric-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+}
+
+.metric-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+}
+
+/* Alert card styles */
+.alert-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 16px;
+  border-left: 4px solid var(--border-default);
+}
+
+.alert-card.urgent {
+  border-left-color: var(--status-urgent);
+  background: rgba(244, 67, 54, 0.05);
+}
+
+.alert-card.warning {
+  border-left-color: var(--status-warning);
+}
+
+.alert-card.info {
+  border-left-color: var(--status-info);
+  background: rgba(33, 150, 243, 0.05);
+}
+
+.alert-card.success {
+  border-left-color: var(--status-success);
+}
+
+/* Badge styles */
+.badge-urgent {
+  background: var(--status-urgent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-new {
+  background: var(--accent-primary);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-overdue {
+  background: #ff5722;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-active {
+  background: var(--status-success);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Circular progress ring */
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.35s;
+  transform-origin: 50% 50%;
+}
+
+/* Sparkline animation */
+@keyframes sparkline-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.sparkline-path {
+  stroke-dasharray: 1000;
+  animation: sparkline-draw 2s ease-in-out forwards;
+}
+
+/* Pulse animation for notification */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+}
+
+.pulse-animation {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+/* Countdown timer styles */
+.countdown-segment {
+  background: var(--bg-tertiary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-variant-numeric: tabular-nums;
 }
